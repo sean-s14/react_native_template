@@ -1,10 +1,16 @@
 {
   "expo": {
+    "scheme": "exp",
     "name": "react_native_template",
     "slug": "react_native_template",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "cd12b483-e60b-4359-bf2a-721ee0eb136d"
+      }
+    }
   }
 }
