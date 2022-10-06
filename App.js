@@ -14,7 +14,6 @@ const App = () => {
       console.log(e);
     }
   }
-
   // useEffect( () => {clearAll();}, []);
 
   return (
