@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-// import { useAuth, useAuthUpdate } from '~/src/providers/exports';
+import { useAuth, useAuthUpdate } from '~/src/contexts/exports';
 import { API_URL_DEV, API_URL_PROD } from '@env';
 
 
@@ -10,15 +10,13 @@ const baseURL = __DEV__ ? API_URL_DEV : API_URL_PROD;
 
 
 const useAxios = () => {
-    // const auth = useAuth();
-    // const authUpdate = useAuthUpdate();
-    const authUpdate = () => {};
-    const auth = {}
+    const auth = useAuth();
+    const authUpdate = useAuthUpdate();
     const [newTokens, setNewTokens] = useState(null);
 
-    // useEffect( () => {
-    //     console.log('Auth :', auth);
-    // }, [auth])
+    useEffect( () => {
+        console.log('Auth:', auth);
+    }, [auth])
 
     const axiosInstance = axios.create({
         baseURL,

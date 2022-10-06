@@ -1,24 +1,26 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
 
-import { 
-  HomePage, 
-  AboutPage 
-} from '~/src/pages/exports';
-
-const Tab = createMaterialBottomTabNavigator();
+import { Navigation } from '~src/routes/exports';
+import { AuthProvider } from '~src/contexts/exports';
 
 const App = () => {
 
+  const clearAll = async () => {
+    try {
+      await AsyncStorage.clear()
+    } catch(e) {
+      // clear error
+      console.log(e);
+    }
+  }
+
+  // useEffect( () => {clearAll();}, []);
+
   return (
-    // <HomePage />
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomePage} />
-        <Tab.Screen name="About" component={AboutPage} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <AuthProvider>
+      <Navigation />
+    </AuthProvider>
   );  
 }
 
