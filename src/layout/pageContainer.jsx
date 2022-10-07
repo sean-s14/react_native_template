@@ -1,6 +1,5 @@
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-
+// import { useEffect } from 'react';
+import { StyleSheet, ScrollView, View } from 'react-native';
 
 const PageContainer = (props) => {
 
@@ -14,7 +13,6 @@ const PageContainer = (props) => {
                     style={[styles.viewContainer, props.viewStyle]}
                 >
                     { props.children }
-                    <StatusBar style="auto" />
                 </ScrollView>
             : 
                 <View
@@ -22,7 +20,6 @@ const PageContainer = (props) => {
                     style={[styles.viewContainer, props.viewStyle]}
                 >
                     { props.children }
-                    <StatusBar style="auto" />
                 </View>
         
     )
