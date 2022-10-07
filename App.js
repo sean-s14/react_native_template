@@ -1,26 +1,52 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 
+import {
+	useFonts,
+	Nunito_300Light,
+	Nunito_400Regular,
+	Nunito_600SemiBold,
+	Nunito_700Bold,
+	Nunito_800ExtraBold,
+	Nunito_900Black,
+} from '@expo-google-fonts/nunito'
+
 import { Navigation } from '~src/routes/exports';
-import { AuthProvider } from '~src/contexts/exports';
+import { AuthProvider, ThemeProvider } from '~src/contexts/exports';
+
 
 const App = () => {
 
-  const clearAll = async () => {
-    try {
-      await AsyncStorage.clear()
-    } catch(e) {
-      // clear error
-      console.log(e);
-    }
-  }
-  // useEffect( () => {clearAll();}, []);
+	const [fontsLoaded] = useFonts({
+		Nunito_300Light,
+		Nunito_400Regular,
+		Nunito_600SemiBold,
+		Nunito_700Bold,
+		Nunito_800ExtraBold,
+		Nunito_900Black,
+	});
 
-  return (
-    <AuthProvider>
-      <Navigation />
-    </AuthProvider>
-  );  
+	const clearAll = async () => {
+		try {
+			await AsyncStorage.clear()
+		} catch (e) {
+			// clear error
+			console.log(e);
+		}
+	}
+	// useEffect( () => {clearAll();}, []);
+	
+	useEffect( () => { console.log("Fonts Loaded:", fontsLoaded); }, [fontsLoaded]);
+
+	// if ( !fontsLoaded ) return null;
+	
+	return (
+		// <ThemeProvider>
+			<AuthProvider>
+				<Navigation />
+			</AuthProvider>
+		// </ThemeProvider>
+	);
 }
 
 export default App;
