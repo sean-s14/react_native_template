@@ -1,5 +1,9 @@
-import Navigation from './navigation';
+import useRoutes from './useRoutes';
+import BottomNavigation from './bottomNav';
+import TopNavigation from './topNav';
 
 export {
-    Navigation,
+    useRoutes,
+    BottomNavigation,
+    TopNavigation,
 }

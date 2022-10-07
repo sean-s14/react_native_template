@@ -1,5 +1,8 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationContainer } from '@react-navigation/native';
+// import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import {
 	useFonts,
@@ -11,7 +14,7 @@ import {
 	Nunito_900Black,
 } from '@expo-google-fonts/nunito'
 
-import { Navigation } from '~src/routes/exports';
+import { BottomNavigation, TopNavigation } from '~src/routes/exports';
 import { AuthProvider, ThemeProvider } from '~src/contexts/exports';
 
 
@@ -43,7 +46,12 @@ const App = () => {
 	return (
 		// <ThemeProvider>
 			<AuthProvider>
-				<Navigation />
+				{/* <SafeAreaProvider> */}
+					<StatusBar />
+					<NavigationContainer>
+						<TopNavigation />
+					</NavigationContainer>
+				{/* </SafeAreaProvider> */}
 			</AuthProvider>
 		// </ThemeProvider>
 	);
