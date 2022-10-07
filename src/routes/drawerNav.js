@@ -13,7 +13,9 @@ const DrawerNavigation = () => {
     // useEffect( () => console.log("Routes:", routes), [routes]);
 
     return (
-        <Drawer.Navigator>
+        <Drawer.Navigator 
+            // useLegacyImplementation={false}
+        >
             { routes && routes.map( ({label, component, icon}, index) => 
                 <Drawer.Screen key={index} name={label} component={component} />
             ) }

@@ -14,7 +14,11 @@ import {
 	Nunito_900Black,
 } from '@expo-google-fonts/nunito'
 
-import { BottomNavigation, TopNavigation, DrawerNavigation } from '~src/routes/exports';
+import { 
+	BottomNavigation, 
+	TopNavigation, 
+	DrawerNavigation 
+} from '~src/routes/exports';
 import { AuthProvider, ThemeProvider } from '~src/contexts/exports';
 
 
@@ -49,6 +53,7 @@ const App = () => {
 				{/* <SafeAreaProvider> */}
 					<StatusBar />
 					<NavigationContainer>
+						{/* <BottomNavigation /> */}
 						{/* <TopNavigation /> */}
 						<DrawerNavigation />
 					</NavigationContainer>
