@@ -45,9 +45,6 @@ function ThemeProvider({children}) {
             case 'dark':
                 themeObject = darkTheme;
                 break;
-            case 'festive':
-                themeObject = festiveTheme;
-                break;
             default:
                 themeObject = lightTheme;       
         }

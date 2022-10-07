@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Button, StyleSheet, Text } from 'react-native';
 import { API_URL_DEV } from '@env';
 
-import { useAuth, useAuthUpdate } from '~/src/contexts/exports';
+import { useAuth, useAuthUpdate, useTheme } from '~/src/contexts/exports';
 import { PageContainer } from '~src/layout/exports';
 import { useAxios, useAuthData } from '~src/hooks/exports';
 
@@ -14,7 +14,8 @@ const HomePage = () => {
     const updateAuth = useAuthUpdate();
     const { isLoggedIn, profile } = useAuthData();
     
-    const styles = stylesheet();
+    const theme = useTheme();
+    const styles = stylesheet(theme);
 
     // useEffect( () => {console.log("Process Env:", process.env)}, []);
     // useEffect( () => {console.log(".env:", API_URL_DEV)}, []);
@@ -34,14 +35,17 @@ const HomePage = () => {
     }
 
     useEffect( () => {
-        api.get('quiz/?title=arithmetic&difficulty=hard')
-            .then( res => {})
-            .catch( err => {});
-    }, [])
+        // api.get('quiz/?title=arithmetic&difficulty=hard')
+        //     .then( res => {})
+        //     .catch( err => {});
+        console.log("Theme:", theme);
+    }, [theme])
+
+    if (!theme) return null;
 
     return (
         <PageContainer>
-            <Text>React Native Template</Text>
+            <Text style={theme?.PH?.PH2}>React Native Template</Text>
             <Text>Username: { profile?.username || '' }</Text>
             <Text>Email: { profile?.email || '' }</Text>
 
@@ -56,6 +60,9 @@ const stylesheet = theme => StyleSheet.create({
         flex: 1,
         width: '100%',
     },
+    header: {
+        ...theme?.PH?.PH2
+    }
 });
 
 export default HomePage;

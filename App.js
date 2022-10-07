@@ -48,7 +48,7 @@ const App = () => {
 	// if ( !fontsLoaded ) return null;
 	
 	return (
-		// <ThemeProvider>
+		<ThemeProvider>
 			<AuthProvider>
 				{/* <SafeAreaProvider> */}
 					<StatusBar />
@@ -59,7 +59,7 @@ const App = () => {
 					</NavigationContainer>
 				{/* </SafeAreaProvider> */}
 			</AuthProvider>
-		// </ThemeProvider>
+		</ThemeProvider>
 	);
 }
 
