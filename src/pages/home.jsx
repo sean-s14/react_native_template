@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Button, StyleSheet, Text } from 'react-native';
 import { API_URL_DEV } from '@env';
 
-import { useAuth, useAuthUpdate, useTheme } from '~/src/contexts/exports';
+import { useAuth, useAuthUpdate, useTheme, useThemeUpdate } from '~/src/contexts/exports';
 import { PageContainer } from '~src/layout/exports';
 import { useAxios, useAuthData } from '~src/hooks/exports';
 
@@ -14,6 +14,7 @@ const HomePage = () => {
     const updateAuth = useAuthUpdate();
     const { isLoggedIn, profile } = useAuthData();
     
+    const updateTheme = useThemeUpdate();
     const theme = useTheme();
     const styles = stylesheet(theme);
 
@@ -39,16 +40,18 @@ const HomePage = () => {
         //     .then( res => {})
         //     .catch( err => {});
         console.log("Theme:", theme);
+        console.log("Theme:", theme?.palette?.text?.primary);
     }, [theme])
 
     if (!theme) return null;
 
     return (
         <PageContainer>
-            <Text style={theme?.PH?.PH2}>React Native Template</Text>
-            <Text>Username: { profile?.username || '' }</Text>
+            <Text style={styles.text}>React Native Template</Text>
+            <Text style={{fontSize: '1rem'}}>Username: { profile?.username || '' }</Text>
             <Text>Email: { profile?.email || '' }</Text>
 
+            <Button onPress={ () => updateTheme(theme?.mode === 'light' ? 'dark' : 'light') } title={"Switch Theme"} />
             <Button onPress={ login } title={"Login"} />
             <Button onPress={ () => updateAuth('clear') } title={"Logout"} />
         </PageContainer>
@@ -61,7 +64,11 @@ const stylesheet = theme => StyleSheet.create({
         width: '100%',
     },
     header: {
-        ...theme?.PH?.PH2
+        // ...theme?.PH?.PH2
+    },
+    text: {
+        ...theme?.typography?.h4,
+        color: theme?.palette?.text?.primary
     }
 });
 

@@ -1,9 +1,13 @@
 // import { useEffect } from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
 
+import { useTheme } from '~src/contexts/exports';
+
+
 const PageContainer = (props) => {
 
-    const styles = stylesheet();
+    const theme = useTheme();
+    const styles = stylesheet(theme);
 
     return (
         props.scroll 
@@ -31,6 +35,7 @@ const stylesheet = theme => StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: theme.palette.background.paper,
     },
 });
 
